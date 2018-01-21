@@ -1,2 +1,2 @@
 # gulp-start
-starting
+Startup gulp with scss preprocessor and jade
