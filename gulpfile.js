@@ -24,24 +24,26 @@ gulp.task('gulpJade',function(){
 
 gulp.task('sass', function(){
     gulp.src('src/app/style/**/*.+(scss|sass)')
+
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
             browsers: ['last 50 versions'],
             // cascade: false
         }))
-    .pipe(gulp.dest('src/app/libs/style'))
+    .pipe(concat('libs.css'))
+    .pipe(gulp.dest('src/build/css'))
 });
 
-gulp.task('style', function(){
-    return gulp.src('src/app/libs/style/**/*.css')
-        .pipe(concat('libs.css')
+gulp.task('minCss', function(){
+    return gulp.src('src/build/css/libs.css')
+        .pipe(concat('libs.min.css'))
+        .pipe(csso())
         .on('error', function(err){
             console.log('\n');
             console.log(err.name + ': ' + err.message);
             console.warn(err.stack, '\n');
             console.log('\n');
-        }))
-        .pipe(csso())
+        })
         .pipe(gulp.dest('src/build/css'))
 });
 
@@ -55,7 +57,6 @@ gulp.task('scripts', function(){
             console.log('\n');
         }))
         .pipe(gulp.dest('src/build/js'))
-        .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('watch', function(){
@@ -72,11 +73,11 @@ gulp.task('watch', function(){
         gulp.start('sass', done);
     }));
 
-    gulp.watch('src/app/libs/style/**/*.css', batch(function(events, done) {
-        gulp.start('style', done);
+    gulp.watch('src/build/css/libs.css', batch(function(events, done) {
+        gulp.start('minCss', done);
     }));
 });
 
-gulp.task('build', ['sass',  'gulpJade', 'style']);
+gulp.task('build', ['sass', 'minCss', 'gulpJade', 'scripts']);
 
 gulp.task('default', ['watch']);
