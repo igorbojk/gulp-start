@@ -1,0 +1,25 @@
+{
+  "name": "gulp-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-jade": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.11",
+    "jade": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/igorbojk/gulp-start.git"
+  },
+  "author": "Igor Boyko",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/igorbojk/gulp-start#readme"
+}
