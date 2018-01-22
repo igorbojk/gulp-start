@@ -1,5 +1,3 @@
-/*styles*/
-
 /*! normalize.css v6.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -376,3 +374,7 @@ template {
  */
 [hidden] {
   display: none; }
+
+/*styles*/
+body {
+  color: red; }
