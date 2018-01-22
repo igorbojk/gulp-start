@@ -25,7 +25,11 @@ gulp.task('gulpJade',function(){
 gulp.task('sass', function(){
     gulp.src('src/app/style/**/*.+(scss|sass)')
 
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+        includePaths: [
+            require('node-normalize-scss').includePaths,
+        ]}
+    ).on('error', sass.logError))
     .pipe(autoprefixer({
             browsers: ['last 50 versions'],
             // cascade: false
